@@ -22,6 +22,26 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-yaml</artifactId>
+			<version>2.13.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.2</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -39,7 +59,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>5.1.0</version>
+				<version>5.4.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -50,6 +70,10 @@
 							<generatorName>spring</generatorName>
 							<configOptions>
 								<sourceFolder>src/gen/java/main</sourceFolder>
+								<!-- Whether to generate only API interface stubs without the server files -->
+<!--								<interfaceOnly>true</interfaceOnly>-->
+								<!-- Select the OpenAPI documentation provider. -->
+<!--								<documentationProvider>none</documentationProvider>-->
 							</configOptions>
 						</configuration>
 					</execution>

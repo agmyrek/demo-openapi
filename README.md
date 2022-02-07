@@ -19,8 +19,20 @@
 
 
 # Setup
+Das openapi-maven-plugin einbinden:
 
-man benötigt für den Spring generator die entsprechenden Spring Web Dependency:.
+    <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <version>5.4.0</version>
+        ...
+    </plugin>
+
+Den Pfad zur API-Beschreibung angeben:
+
+    <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+
+Für Spring benötigt das Plugin die entsprechenden Spring Web Dependencies:
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -30,16 +42,64 @@ man benötigt für den Spring generator die entsprechenden Spring Web Dependency
 Dort sind nämlich die benötigten Annotationen wie z.B. @Controller
 Es gibt auch eine Variante mit Plain Java...
 
-SpringFox und Swagger, wtf?!
+Möchte man sonst zunächst nichts an der Konfiguration des Plugins ändern und es beim Default belassen, so braucht man
+mindestens noch die Folgenden Dependencies:
+
+com.fasterxml.jackson.dataformat.yaml.YAMLMapper:
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-yaml</artifactId>
+      <version>...</version>
+    </dependency>
+
+io.swagger.v3.oas.annotations.*:
+Hierfür kann man springdoc verwenden. 
+
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>...</version>
+    </dependency>
+
+org.openapitools.jackson.nullable.JsonNullableModule:
+
+    <dependency>
+        <groupId>org.openapitools</groupId>
+        <artifactId>jackson-databind-nullable</artifactId>
+        <version>0.2.2</version>
+    </dependency>
+
+Ein vereinfachtes Setup lässt durch Konfiguration gestalten.
+
+# Konfiguration
+
+Möchte man die Api-Beschreibungen nicht veröffentlichen, kann man das mittels folgender Konfiguration unterbinden:
+
+    <interfaceOnly>true</interfaceOnly>
+
+Swagger-Dokumentation deaktivieren:
+
+    <documentationProvider>none</documentationProvider>
 
 # Ausführung
 
 über maven clean compile
 
+# Endpunkte:
+
+OpenApi-Beschreibung:
+
+    /openapi.yaml
+    /openapi.json
 # Documentation
 maven plugin:
 
 https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md
+
+maven plugin configuration options for spring:
+
+https://openapi-generator.tech/docs/generators/spring
 
 oas:
 
