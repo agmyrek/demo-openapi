@@ -63,17 +63,18 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>generate</goal>
+							<goal>generate</goal> <!-- wird in der compile phase von maven automatisch ausgeführt-->
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
+							<modelNameSuffix>Dto</modelNameSuffix>
 							<configOptions>
-								<sourceFolder>src/gen/java/main</sourceFolder>
-								<!-- Whether to generate only API interface stubs without the server files -->
-<!--								<interfaceOnly>true</interfaceOnly>-->
+								<apiPackage>de.agmyrek.demoopenapispring.api.gen</apiPackage>
+								<modelPackage>de.agmyrek.demoopenapispring.api.gen.model</modelPackage>
+								<interfaceOnly>true</interfaceOnly>
 								<!-- Select the OpenAPI documentation provider. -->
-<!--								<documentationProvider>none</documentationProvider>-->
+								<documentationProvider>none</documentationProvider>
 							</configOptions>
 						</configuration>
 					</execution>

@@ -1,13 +1,65 @@
 openapi: 3.0.0
 info:
-  title: API Dokument für die Timekeeper Demo App
+  title: API Dokument Titel
   version: 1.0
 servers:
   - url: https://api.server.test/v1
 paths:
-  /zeiten:
+  /workshops:
     get:
-      description: gibt alle erfassten Zeiten zurück
+      description: Verfügbare Workshop anzeigen
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkshopsResponse'
+
+  /workshops/{id}/anmeldung:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+
+    post:
+      description: Für einem Workshop anmelden
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnmeldungRequest'
+      responses:
+        200:
+          description: Erfolgreich angemeldet
+
+
+components:
+  schemas:
+    WorkshopsResponse:
+      type: array
+      description: Eine Liste mit Workshops
+      items:
+        $ref: "#/components/schemas/Workshop"
+    Workshop:
+      type: object
+      description: Ein Workshop
+      properties:
+        id:
+          type: string
+        titel:
+          type: string
+        beschreibung:
+          type: string
+        verfuegbarePlaetze:
+            type: number
+    AnmeldungRequest:
+      type: object
+      description: Eine Anmeldung
+      properties:
+        name:
+          type: string
+        email:
+          type: string
