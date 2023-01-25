@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.NativeWebRequest;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,9 @@ public class ZeitenController implements WorkshopsApi {
      * @return OK (status code 200)
      */
     @Override
-    public ResponseEntity<List<WorkshopDto>> workshopsGet() {
+    public ResponseEntity<List<WorkshopDto>> workshopsAnzeigen() {
         var workshops = List.of(
-                new WorkshopDto()
+                new WorkshopDto().id("1").titel("titel").beschreibung("beschreibung").verfuegbarePlaetze(BigDecimal.valueOf(100))
         );
         log.info("Verfügbare Workshops: {}", workshops);
         return new ResponseEntity<>(workshops, HttpStatus.OK);
@@ -42,7 +43,7 @@ public class ZeitenController implements WorkshopsApi {
      * @return Erfolgreich angemeldet (status code 200)
      */
     @Override
-    public ResponseEntity<Void> workshopsIdAnmeldungPost(String id, AnmeldungRequestDto anmeldungRequestDto) {
+    public ResponseEntity<Void> workshopAnmeldung(String id, AnmeldungRequestDto anmeldungRequestDto) {
 
         log.info("Anmeldung erfolgreich für: {}", anmeldungRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);

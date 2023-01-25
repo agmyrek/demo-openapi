@@ -8,6 +8,7 @@ paths:
   /workshops:
     get:
       description: Verfügbare Workshop anzeigen
+      operationId: workshopsAnzeigen
       responses:
         '200':
           description: OK
@@ -26,6 +27,7 @@ paths:
 
     post:
       description: Für einem Workshop anmelden
+      operationId: workshopAnmeldung
       requestBody:
         content:
           application/json:

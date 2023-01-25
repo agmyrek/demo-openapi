@@ -8,6 +8,7 @@ class SpringApplicationTests {
 
 	@Test
 	void contextLoads() {
+		//prüft, ob die gesamt Spring-Anwendung ohne Fehler gestartet werden kann.
 	}
 
 }
