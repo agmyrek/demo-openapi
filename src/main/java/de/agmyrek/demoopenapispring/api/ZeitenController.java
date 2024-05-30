@@ -1,8 +1,8 @@
 package de.agmyrek.demoopenapispring.api;
 
 
-import de.agmyrek.demoopenapispring.api.gen.WorkshopsApi;
-import de.agmyrek.demoopenapispring.api.gen.model.WorkshopDto;
+import org.openapitools.api.Workshop;
+import org.openapitools.api.WorkshopsApi;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +23,9 @@ public class ZeitenController implements WorkshopsApi {
      * @return OK (status code 200)
      */
     @Override
-    public ResponseEntity<List<WorkshopDto>> workshopsAnzeigen() {
+    public ResponseEntity<List<Workshop>> workshopsAnzeigen() {
         var workshops = List.of(
-                new WorkshopDto().id("1").titel("titel").beschreibung("beschreibung").verfuegbarePlaetze(BigDecimal.valueOf(100))
+                new Workshop().id("1").titel("titel").beschreibung("beschreibung").verfuegbarePlaetze(BigDecimal.valueOf(100))
         );
         log.info("Verfügbare Workshops: {}", workshops);
         return new ResponseEntity<>(workshops, HttpStatus.OK);

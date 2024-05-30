@@ -43,19 +43,33 @@
 				<version>7.6.0</version>
 				<executions>
 					<execution>
+						<id>server</id>
 						<goals>
 							<goal>generate</goal> <!-- wird in der compile phase von maven automatisch ausgeführt-->
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<modelNameSuffix>Dto</modelNameSuffix>
 							<configOptions>
 								<useSpringBoot3>true</useSpringBoot3>
 								<openApiNullable>false</openApiNullable>
-								<apiPackage>de.agmyrek.demoopenapispring.api.gen</apiPackage>
-								<modelPackage>de.agmyrek.demoopenapispring.api.gen.model</modelPackage>
 								<interfaceOnly>true</interfaceOnly>
+								<modelPackage>org.openapitools.api</modelPackage>
+							</configOptions>
+						</configuration>
+					</execution>
+					<!-- Konfiguration für client-->
+					<execution>
+						<id>client</id>
+						<goals>
+							<goal>generate</goal> <!-- wird in der compile phase von maven automatisch ausgeführt-->
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+							<generatorName>java</generatorName>
+							<configOptions>
+								<library>restclient</library>
+								<openApiNullable>false</openApiNullable>
 							</configOptions>
 						</configuration>
 					</execution>
