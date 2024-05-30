@@ -5,16 +5,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.2</version>
+		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.agmyrek</groupId>
 	<artifactId>demo-openapi-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo-openapi-spring</name>
-	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -22,31 +21,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-yaml</artifactId>
-			<version>2.13.1</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>1.6.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.2</version>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.5.0</version>
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -59,7 +40,7 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>5.4.0</version>
+				<version>7.6.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -70,11 +51,11 @@
 							<generatorName>spring</generatorName>
 							<modelNameSuffix>Dto</modelNameSuffix>
 							<configOptions>
+								<useSpringBoot3>true</useSpringBoot3>
+								<openApiNullable>false</openApiNullable>
 								<apiPackage>de.agmyrek.demoopenapispring.api.gen</apiPackage>
 								<modelPackage>de.agmyrek.demoopenapispring.api.gen.model</modelPackage>
 								<interfaceOnly>true</interfaceOnly>
-								<!-- Select the OpenAPI documentation provider. -->
-								<documentationProvider>none</documentationProvider>
 							</configOptions>
 						</configuration>
 					</execution>

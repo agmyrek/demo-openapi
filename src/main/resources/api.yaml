@@ -17,25 +17,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/WorkshopsResponse'
 
-  /workshops/{id}/anmeldung:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-
-    post:
-      description: Für einem Workshop anmelden
-      operationId: workshopAnmeldung
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AnmeldungRequest'
-      responses:
-        200:
-          description: Erfolgreich angemeldet
+#  /workshops/{id}/anmeldung:
+#    parameters:
+#      - name: id
+#        in: path
+#        required: true
+#        schema:
+#          type: string
+#
+#    post:
+#      description: Für einem Workshop anmelden
+#      operationId: workshopAnmeldung
+#      requestBody:
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/AnmeldungRequest'
+#      responses:
+#        200:
+#          description: Erfolgreich angemeldet
 
 
 components:
@@ -57,11 +57,3 @@ components:
           type: string
         verfuegbarePlaetze:
             type: number
-    AnmeldungRequest:
-      type: object
-      description: Eine Anmeldung
-      properties:
-        name:
-          type: string
-        email:
-          type: string
